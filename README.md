@@ -1,0 +1,2 @@
+# Quirry- The smart solver
+
