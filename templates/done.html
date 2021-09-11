@@ -1,0 +1,109 @@
+<!-------------
+Final Year Project Web App UI
+Group Members : 1781009, 1781215, 1781017
+--------------->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title> Smart Solver | Registration Done </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap Core Minified CSS CDN -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+		<!-- jQuery CDN -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- Bootstrap Core Minified JS CDN -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+		<!-- 6. Yatra One -->
+		<link href="https://fonts.googleapis.com/css?family=Yatra+One&display=swap" rel="stylesheet">
+		<!-- 2. Cairo -->
+		<link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+		<!-- 7. Arvo -->
+		<link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+		<!-- 13. Exo 2 -->
+		<link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+		
+		<style>
+			body {
+				margin : 0;
+				padding : 0;
+				box-sizing : border-box;
+			}
+			.navbar {
+			    background-color  : transparent;
+			}
+			.navbar-brand {
+			    font-family : 'Yatra One';
+			    font-size : 28px;
+			}
+			.container1 {
+				background: #373B44;
+				background: linear-gradient(to left, #4286f4, #373B44);
+				padding : 0 10vw;
+				height : 98vh;
+				width : 100%;
+				display : flex;
+				flex-direction : column;
+				justify-content : center;
+				align-items : center;
+				text-align : center;
+			}
+			h2 {
+				font-family : 'Exo 2';
+				font-size : 34px;
+				color : #FFF;
+			}
+			p {
+				font-family : 'Exo 2';
+				font-size : 20px;
+				color : #FFF;
+			}
+			.container1 a {
+				font-family : 'Arvo';
+			}
+			.page-footer {
+				position : fixed;
+				bottom : 0;
+				left : 0;
+			    width : 100%;
+			    background-color : #083E60;
+			}
+			.footer-copyright {
+			    background-color : #0B6196;
+			    font-size : 18px;
+			}
+			@media only screen and (max-width: 768px) {
+				h2 {
+					font-size : 22px;
+					text-align : center;
+				}
+				p {
+					font-size : 14px;
+					text-align : center;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+			<strong class="navbar-brand">SmartSolver</strong>
+		</nav>
+		<div class="container1">
+			<h2> Your Organization's Details Have Been Recorded. Please Wait For A Short Time. You'll receive an E-mail In A Short While With Some Login Credentials. </h2>
+			<hr class="hr-light my-4 w-75">
+			<p> If You Don't Receive Such Mail Or Facing Some Problems While Registration, Then Feel Free To Contact Us At smartsolver20@gmail.com </p>
+			<a href="{{url_for('main1')}}" class="btn btn-rounded btn-outline-white mt-5"> Back To Home Page </a>
+		</div>
+		<footer class="page-footer font-small">
+			<div class="footer-copyright text-center py-3"> Copyright &copy; 2020 All Rights Reserved :
+				<a href="#"> SmartSolver </a>
+			</div>
+		</footer>
+	</body>
+</html>

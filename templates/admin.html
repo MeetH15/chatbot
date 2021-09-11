@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> SmartSolver | Admin Page </title>
+		<link href="https://fonts.googleapis.com/css?family=Yatra+One&display=swap" rel="stylesheet">
+		<!-- 2. Cairo -->
+		<link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+		<!-- 7. Arvo -->
+		<link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+		<!-- 13. Exo 2 -->
+		<link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap Core Minified CSS CDN -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+		<!-- Fontawesome Icons CDN -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<!-- jQuery CDN -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- Popper.js CDN for Tooltips -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<!-- Bootstrap Core Minified JS CDN -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+        <!-- Admin Page Stylesheet -->
+		<link rel="stylesheet" href= "{{ url_for('static',filename='adminStyles.css') }}">
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-dark navbar-expand-lg scrolling-navbar">
+				<a class="navbar-brand" href="#"><strong>SmartSolver</strong></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto nav nav-pills" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="pills-home" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-view" data-toggle="pill" href="#view" role="tab" aria-controls="view" aria-selected="true">View Data</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-insert" data-toggle="pill" href="#insert" role="tab" aria-controls="insert" aria-selected="true">Insert Data</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-update" data-toggle="pill" href="#update" role="tab" aria-controls="update" aria-selected="true">Update Data</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-delete" data-toggle="pill" href="#delete" role="tab" aria-controls="delete" aria-selected="true">Delete Data</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-change" data-toggle="pill" href="#change" role="tab" aria-controls="change" aria-selected="true">Change Password</a>
+						</li>
+						<li class="nav-item right">
+							<a class="nav-link" href="/logout" id="sign-up">Sign Out</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="tab-content" id="pills-tabContent">
+				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="pills-home">
+					<div class="view intro-2">
+						<div class="full-bg-img">
+							<div class="mask rgba-black-strong flex-center">
+								<div class="container text-center white-text wow fadeInUp main-content">
+									<h1 class="h1-responsive">Welcome {{session['user']}}</h1>
+									<h4 class="h4-responsive">You can Insert, Update, Delete and View The DataSet Contents For Your Chatbot</h4>
+									<br /><p class="h4-responsive"> Do Read The Instructions Before Performing Any Operations </p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="insert" role="tabpanel" aria-labelledby="pills-insert">
+					<div class="Instruction">
+						<h2 class="pt-4"> Instructions [For Inserting Data] </h2>
+			            <ol class="rectangle-list">
+			                <li> Enter the tag for your data in the textbox and then click next. </li>
+			                <li> Enter the pattern of questions you need to enter into the dataset. </li>
+			                <li> Click on the Plus Icon to enter if you wish to enter another pattern for your question. </li>
+							<li> Dont't keep any textbox empty. It won't accept such inputs. Also if you add new textbox then it cannot be removed back. </li>
+			                <li> If you've finished entering the questions then, click Next. </li>
+			                <li> Enter the pattern of responses according to the entered questions. </li>
+			                <li> Click on the Plus Icon to enter more than one response. </li>
+			                <li> Click on Submit Button if you have finished entering your data. </li>
+			                <li> Repeat the same process everytime for entering data. </li>
+			            </ol>
+					</div>
+					<div class="Operation">
+						<div class="steps">
+				            <div class="dot step_1 done">  </div>
+				            <div class="dot step_2">  </div>
+				            <div class="dot step_3">  </div>
+				        </div>
+					<form id="msform">
+					  <!-- progressbar -->
+					  <!-- fieldsets -->
+					  <fieldset>
+						<div class="component">
+						<h2 class="title">Insert Tag</h2>
+						</div>
+
+						<div class="data-container">
+							<div class="text-container1">
+								<div class="d-flex flex-row flex-center">
+								<input type="text" name="tag1" class="tag1 ml-2 mb-2" placeholder="Enter the tag name" />
+								</div>
+							</div>
+						</div>
+						<input type="button" name="next" class="next action-button" value="Next" />
+					  </fieldset>
+					  <fieldset>
+						<div class="component">
+						<h2 class="title">Insert Pattern Of Questions</h2>
+						</div>
+						<div class="data-container">
+							<div class="text-container2">
+								<div class="d-flex flex-row flex-center">
+								<div class="plus2 d-flex flex-center">
+									<i class="fas fa-plus myIcon"></i>
+								</div>
+								<input type="text" name="quest1" class="quest quest1 ml-2 mb-2" placeholder="Enter the pattern of question" />
+								</div>
+							</div>
+						</div>
+						<input type="button" name="previous" class="previous action-button" value="Previous" />
+						<input type="button" name="next" class="next action-button" value="Next" />
+					  </fieldset>
+					  <fieldset>
+						<div class="component">
+						<h2 class="title">Insert Pattern Of Responses</h2>
+						</div>
+						<div class="data-container">
+							<div class="text-container3">
+								<div class="d-flex flex-row flex-center">
+								<div class="plus3 d-flex flex-center">
+									<i class="fas fa-plus myIcon"></i>
+								</div>
+								<input type="text" name="resp1" class="resp resp1 ml-2 mb-2" placeholder="Enter the pattern of response" />
+								</div>
+							</div>
+						</div>
+						<input type="button" name="previous" class="previous action-button" value="Previous" />
+						<input type="button" name="submit" class="submit action-button" value="Submit" />
+					  </fieldset>
+					</form>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="update" role="tabpanel" aria-labelledby="pills-update">
+					<div class="Operation2">
+						<h2> Select one of the available tags</h2>
+						<div class="d-flex flex-wrap update-tags" style="justify-content: center; align-items: center; width: 100%;">
+							{% for i in con %}
+							<div class="q1"> {{i['tag']}} </div>
+							{% endfor %}
+						</div>
+							<div class="input-group mb-3" style="width: 90%; margin: 3vh 0;">
+							  <div class="input-group-prepend">
+								<span class="input-group-text" id="label3">Selected Tag</span>
+							  </div>
+							  <input type="text" id="selectedTag1" placeholder="No Tag Selected" readonly="readonly" class="form-control">
+							</div>
+							<div class="text-container4">
+								<div class="d-flex flex-row flex-center">
+								<div class="plus4 d-flex flex-center">
+									<i class="fas fa-plus myIcon"></i>
+								</div>
+								<input type="text" name="up1" class="up up1 ml-2 mb-2" placeholder="Enter a pattern of response" />
+								<div class="btn-container">
+									<button type="button" class="btn btn-indigo update">Update</button>
+								</div>
+								</div>
+							</div>
+						</div>
+					<div class="Instruction1">
+						<h2> Instructions [For Updating Data] </h2>
+			            <ol class="rectangle-list1">
+			                <li> Select a tag from the list of available tags. </li>
+			                <li> Enter the pattern of responses you wish to change for the selected tag.  </li>
+			                <li> You can add another text field by clicking on the Plus Icon. </li>
+			                <li> Don't keep any textbox empty. It won't accept such inputs. Also if you add new textbox then it cannot be removed back. </li>
+			                <li> If you have finished, then click on Update Button. </li>
+			            </ol>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="delete" role="tabpanel" aria-labelledby="pills-delete">
+					<div class="Instruction1">
+						<h2> Instructions [For Deleting Data] </h2>
+			            <ol class="rectangle-list1">
+			                <li> Select a tag from the list of available tags </li>
+			                <li> The selected tag will get displayed in a textbox.  </li>
+			                <li> Click on Delete button. </li>
+			                <li> You'll get an alert message presenting you with the status of the operation. </li>
+			            </ol>
+					</div>
+					<div class="Operation1">
+						<h2> Select one of the available tags</h2>
+						<div class="d-flex flex-wrap delete-tags" style="justify-content: center; align-items: center; width: 100%;">
+							{% for i in con %}
+							<div class="q2" id="availD{{loop.index}}"> {{i['tag']}} </div>
+							{% endfor %}
+						</div>
+							<div class="input-group mb-3" style="width: 90%; margin: 3vh 0;">
+							  <div class="input-group-prepend">
+								<span class="input-group-text" id="label3">Selected Tag</span>
+							  </div>
+							  <input type="text" id="selectedTag2" placeholder="No Tag Selected" readonly="readonly" class="form-control">
+							</div>
+						<button type="button" class="btn btn-indigo delete"> Delete <i class="fas fa-trash-alt"></i> </button>
+					</div>
+
+
+				</div>
+				<div class="tab-pane fade" id="view" role="tabpanel" aria-labelledby="pills-view">
+					<div class="Operation2">
+						<h2> Select one of the available tags</h2>
+						<div class="d-flex flex-wrap view-tags" style="justify-content: center; align-items: center; width: 100%;">
+							{% for i in con %}
+							<div class="q3" id="view{{loop.index}}"> {{i['tag']}} </div>
+							{% endfor %}
+						</div>
+							<div class="input-group mb-3" style="width: 90%; margin: 3vh 0;">
+							  <div class="input-group-prepend">
+								<span class="input-group-text" id="label3">Selected Tag</span>
+							  </div>
+							  <input type="text" id="selectedTag3" placeholder="No Tag Selected" readonly="readonly" class="form-control">
+								<div class="input-group-append">
+									<button class="btn btn-md btn-indigo m-0 px-4 check" type="button" id="MaterialButton-addon2"> Check  </button>
+								</div>
+							</div>
+						<div class="form-group shadow-textarea w-75">
+						  <label for="exampleFormControlTextarea6" style="font-weight : 600; font-size : 21px;"> Pattern OF Questions </label>
+						  <textarea class="form-control z-depth-1 view-questions" id="exampleFormControlTextarea6" rows="4" placeholder="No Data Available" readonly="readonly"></textarea>
+						</div>
+						<div class="form-group shadow-textarea w-75">
+						  <label for="exampleFormControlTextarea6" style="font-weight : 600; font-size : 21px;"> Pattern OF Responses </label>
+						  <textarea class="form-control z-depth-1 view-responses" id="exampleFormControlTextarea6" rows="4" placeholder="No Data Available" readonly="readonly"></textarea>
+						</div>
+					</div>
+					<div class="Instruction2">
+						<h2> Welcome {{session['user']}} </h2>
+						<h3> You can view your organization's data here </h3>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="change" role="tabpanel" aria-labelledby="pills-change">
+					<div class="blue-text d-flex flex-column align-items-center justify-content-center" style="width:100vw; min-height: 100vh;">
+						<h2> You Can Change Your Password Here </h2>
+						<form class="w-50" method="POST">
+							<div class="form-group">
+								<label for="oldPass">Old Password</label>
+								<input type="text" class="form-control" id="oldPass" placeholder="Enter Old Password" required="required">
+							</div>
+
+							<div class="form-group">
+								<label for="newPass">New Password</label>
+								<input type="text" class="form-control" id="newPass" placeholder="Enter New Password" required="required">
+							</div>
+							<div class="form-group">
+								<label for="new2Pass">Confirm New Password</label>
+								<input type="text" class="form-control" id="new2Pass" placeholder="Confirm New Password" required="required">
+							</div>
+							<div class="d-flex justify-content-center">
+								<button type="button" class="btn btn-indigo change-pwd">Change Password</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<script>
+			$(document).ready(function () {
+			$("#home").css({'z-index': 5});
+				$(".navbar .navbar-collapse .nav .nav-item").on('click', function(e) {
+					var a = $(e.target).attr("href");
+					//alert(a);
+					$("#home").css({'z-index': 1});
+					$("#insert").css({'z-index': 1});
+					$("#update").css({'z-index': 1});
+					$("#delete").css({'z-index': 1});
+					$("#view").css({'z-index': 1});
+					$("#change").css({'z-index':1});
+					$(""+a+"").css({'z-index':5});
+				});
+
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+i=1;
+num1 = 1, num2 = 1, num3 = 1;
+idValue3 = "";
+idValue2 = ""
+idValue1 = "";
+$(".next").click(function(){
+	if(animating) return false;
+	animating = true;
+
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+
+	//activate next step on progressbar using the index of next_fs
+	i++;
+  changePage();
+
+	//show the next fieldset
+	next_fs.show();
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'transform': 'scale('+scale+')', 'position': 'absolute'
+      });
+			next_fs.css({'left': left, 'opacity': opacity});
+		},
+		duration: 1000,
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		},
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".previous").click(function(){
+	if(animating) return false;
+	animating = true;
+
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+
+	//de-activate current step on progressbar
+	i--;
+  changePage();
+
+	//show the previous fieldset
+	previous_fs.show();
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'left': left});
+			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity });
+		},
+		duration: 1000,
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		},
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+function changePage(){
+        for(var j=1;j<=3;j++) {
+
+            $(".step_"+j).removeClass("done");
+        }
+        for(var j=1;j<=i;j++) {
+            $(".step_"+j).addClass("done");
+        }
+    }
+			$(".submit").on('click', function() {
+				var tag = $(".tag1").val();
+				var question = [];
+				var n1 = parseInt($(".quest").length);
+				var responses = [];
+				var n2 = parseInt($(".resp").length);
+				for(var i=1;i<=n1;i++) {
+					var o = $(".quest"+i).val();
+					question.push(o);
+				}
+				for(var i=1;i<=n2;i++) {
+					var e = $(".resp"+i).val();
+					responses.push(e);
+				}
+				$.post("/insertData", { a: tag, b: JSON.stringify(question), c: JSON.stringify(responses)}).done(function(data) {
+					if(data=='1') {
+						alert("Data Inserted Sucessfully");
+						var txt1 = document.createElement("div");
+						txt1.className = "q1";
+						txt1.innerHTML = tag;
+						$(".update-tags").append(txt1);
+
+						var z = $(".q2").length;
+						var txt2 = $(document.createElement("div")).attr({'class':'q2', 'id':z}).html(tag);
+						$(".delete-tags").append(txt2);
+
+						var z = $(".q3").length;
+						var txt3 = $(document.createElement("div")).attr({'class':'q3', 'id':z}).html(tag);
+						$(".view-tags").append(txt3);
+
+					}
+					else {
+						alert("Invalid Data!!");
+					}
+				});
+				$(".navbar .navbar-collapse .nav .nav-item #pills-insert").click();
+				$(".tag1").val('');
+				$(".quest1").val('');
+				$(".resp1").val('');
+				$(".txt1").remove();
+			});
+
+			/*$("#msform .txt1").on("click", function() {
+				//$(this).parents('.txt1').remove();
+				alert("Inside");
+			});*/
+
+			$(".plus1").on("click", function() {
+				num++;
+                $(".text-container1").append("<div class='input-group txt1'> <div class='input-group-prepend'> <span class='input-group-text min minus"+num+"' id='basic-addon"+num+"'> <i class='fas fa-arrow-right'></i> </span> </div> <input type='text' class='form-control tag"+num+"' name='tag"+num+"' placeholder='Enter Another Tag Name' required='required' aria-label='Username' aria-describedby='basic-addon1'> </div> ");
+            });
+
+            $(".plus2").on("click", function() {
+				num1++;
+                $(".text-container2").append("<div class='input-group txt1'> <div class='input-group-prepend'> <span class='input-group-text' id='basic-addon"+num1+"'> <i class='fas fa-arrow-right'></i> </span> </div> <input type='text' class='form-control quest quest"+num1+"' name='quest"+num1+"' placeholder='Enter another pattern of question' required='required' aria-label='Username' aria-describedby='basic-addon1'> </div> ");
+            });
+
+            $(".plus3").on("click", function() {
+				num2++;
+                $(".text-container3").append("<div class='input-group txt1'> <div class='input-group-prepend'> <span class='input-group-text' id='basic-addon"+num2+"'> <i class='fas fa-arrow-right'></i> </span> </div> <input type='text' class='form-control resp resp"+num2+"' name='resp"+num2+"' placeholder='Enter another pattern of response' required='required' aria-label='Username' aria-describedby='basic-addon1'> </div> ");
+            });
+
+			$(".plus4").on("click", function() {
+				num3++;
+                $(".text-container4").append("<div class='input-group txt2 mb-2'> <div class='input-group-prepend'> <span class='input-group-text' id='basic-addon"+num3+"'> <i class='fas fa-arrow-right'></i> </span> </div> <input type='text' class='form-control up up"+num3+"' name='up"+num3+"' placeholder='Enter another pattern of response' required='required' aria-label='Username' aria-describedby='basic-addon"+num3+"'> </div> ");
+            });
+			$(document).on('click', '.q1', function() {
+				var TextboxValue1 = $(this).html();
+            	idValue2 = $(this).attr("id");
+            	$("#selectedTag1").val(TextboxValue1);
+			});
+
+            $(".update").on("click", function() {
+            	var u = $("#selectedTag1").val();
+            	if(u=="") {
+            		alert("No Tag Selected! Please Selected A Tag First!");
+            		return;
+            	}
+            	var dataSent = [];
+            	var n3 = parseInt($(".up").length);
+            	for(var i=1;i<=n3;i++) {
+					var s = $(".up"+i).val();
+					dataSent.push(s);
+				}
+				$.post("/updateData", { tag : u, updateData : JSON.stringify(dataSent) }).done(function(data) {
+					if(data=='1') {
+						$("#"+idValue2).remove();
+						$("#selectedTag1").val("");
+						alert("Data Updated Successfully!");
+					}
+					else {
+						alert("Some Error Ocuured! Please Contact Us At smartsolver20@gmail.com");
+					}
+				});
+            });
+
+            $(document).on('click', '.q2', function() {
+            	var TextboxValue = $(this).html();
+            	idValue1 = $(this).attr("id");
+            	$("#selectedTag2").val(TextboxValue);
+            });
+
+            $(".delete").on("click", function() {
+            	var t = $("#selectedTag2").val();
+            	if(t=="") {
+            		alert("No Tag Selected! Please Selected A Tag For Deletion");
+            		return;
+            	}
+				$.post("/deleteData", { tag : t }).done(function(data) {
+					if(data=='1') {
+						$("#"+idValue1).remove();
+						$("#selectedTag2").val("");
+						alert("Tag Deleted Sucessfully");
+					}
+					else {
+						alert("Some Error Ocuured! Please Contact Us At smartsolver20@gmail.com");
+					}
+				});
+            });
+
+            $(document).on('click', '.q3', function() {
+            	var ViewValue = $(this).html();
+            	idValue3 = $(this).attr("id");
+            	$("#selectedTag3").val(ViewValue);
+            });
+
+            $(".check").on("click", function() {
+            	var t = $("#selectedTag3").val();
+            	if(t=="") {
+            		alert("No Tag Selected! Please Selected A Tag For Checking The Data");
+            		return;
+            	}
+				$.post("/viewData", { tag : t }).done(function(data) {
+					if(data!='0') {
+						var flask_quests = "";
+						for(var i=0;i<data.var1.length;i++) {
+							flask_quests+='&#9658; '+data.var1[i]+'\n';
+						}
+						$(".view-questions").html(flask_quests);
+
+						var flask_resp = "";
+						for(var i=0;i<data.var2.length;i++) {
+							flask_resp+='&#9658; '+data.var2[i]+'\n';
+						}
+						$(".view-responses").html(flask_resp);
+					}
+					else {
+						alert("Some Error Ocuured! Please Contact Us At smartsolver20@gmail.com");
+					}
+				});
+            });
+			$(".change-pwd").on("click", function() {
+				var old_psw = $("#oldPass").val();
+				var new_psw = $("#newPass").val();
+				var confirm_psw = $("#new2Pass").val();
+				if(old_psw=="" || new_psw=="" || confirm_psw=="") {
+            		alert("All Password Fields Should BE Filled Out!!");
+            		return;
+            	}
+				if(new_psw == confirm_psw) {
+					$.post("/changePassword", { old_Pass : old_psw, new_Pass : new_psw }).done(function(data) {
+						if(data=='1') {
+							alert("Password Updated!")
+						}
+						else if(data=='2') {
+							alert("Old Password Is Incorrect. Try Again With The Correct Password");
+						}
+						else {
+							alert("Some Error Ocuured! Please Contact Us At smartsolver20@gmail.com");
+						}
+					});
+				} else {
+					alert("New password and Confirm Password Values Does not Match!!");
+				}
+
+			});
+
+			});
+
+		</script>
+	</body>
+</html>

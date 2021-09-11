@@ -1,0 +1,777 @@
+<!-------------
+SmartSolver
+Version : v5.0
+chat-window styles - remove width and height
+
+--------------->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title> SmartSolver </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap Core Minified CSS CDN -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+		<!-- jQuery CDN -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- Popper.js CDN for Tooltips -->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	    <!-- Bootstrap Core Minified JS CDN -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+		<!-- Bootstrap 4 Toggle
+		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script> -->
+		<!-- AOS CSS CDN -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha256-GqiEX9BuR1rv5zPU5Vs2qS/NSHl1BJyBcjQYJ6ycwD4=" crossorigin="anonymous" />
+		<!-- AOS JS CDN -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha256-pQBbLkFHcP1cy0C8IhoSdxlm0CtcH5yJ2ki9jjgR03c=" crossorigin="anonymous"></script>
+		<!-- 6. Yatra One -->
+		<link href="https://fonts.googleapis.com/css?family=Yatra+One&display=swap" rel="stylesheet">
+		<!-- 2. Cairo -->
+		<link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+		<!-- 7. Arvo -->
+		<link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+		<!-- 13. Exo 2 -->
+		<link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+		<script>
+			let quotes = ['To lose patience is to lose the battle.','Patience has its limits. Take it too far, and it’s cowardice.','Patience is the road to wisdom.','Patience is bitter, but its fruit is sweet.','Two things define us: Our patience when we have nothing and our attitude when we have everything.','The ultimate mysteries are opened only to those who have immense patience.'];
+			let writer = ['Mahatma Gandhi','George Jackson','Kao Kalia Yang','Aristotle','Unknown','Osho'];
+			$(document).ready(function () {
+
+				$('[data-toggle="tooltip"]').tooltip();
+				$(document).on('show.bs.tooltip', function (e) {
+  					setTimeout(function() {
+   						$('[data-toggle="tooltip"]').tooltip('hide');
+					}, 3000);
+				});
+
+
+				window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+
+      			if (window.SpeechRecognition === null) {
+        			document.getElementById('button-play-ws').setAttribute('disabled', 'disabled');
+        			document.getElementById('button-stop-ws').setAttribute('disabled', 'disabled');
+      			} else {
+        			var recognizer = new window.SpeechRecognition();
+        			//recognizer.continuous = false;
+        			//var transcription = document.getElementsByClassName('publisher-input')[0];
+
+			        var questionWords = ['What','When','Where','Which','Who','Whom','Whose','Why','How'];
+			        // Recogniser doesn't stop listening even if the user pauses
+			        //recognizer.continuous = true;
+
+			        // Start recognising
+			        recognizer.onresult = function(event) {
+			          	//transcription.textContent = '';
+			          	var x = '';
+
+			          	for (var i = event.resultIndex; i < event.results.length; i++) {
+			            	if (event.results[i].isFinal) {
+			              		x = event.results[i][0].transcript;// + ' (Confidence: ' + event.results[i][0].confidence + ')';
+			            	} /*else {
+			              		transcription.textContent += event.results[i][0].transcript;
+			            	}*/
+			          	}
+			          	$('.publisher-input').val(x);
+			          	$('.text-info').click();
+			        };
+
+        
+			        $('#button-play-ws').on('click', function () {
+			        	$('#button-play-ws').empty();
+			            $('#button-play-ws').append('<i class="fas fa-microphone-alt-slash"></i>');
+			            $(".start-audio").attr('id', 'button-stop-ws');
+			        	recognizer.start();
+			        });
+			    	$('#button-stop-ws').on('click', function () {
+			    		$('.start-audio').empty();
+			           	$('.start-audio').append('<i class="fas fa-microphone-alt"></i>');
+			           	//$('.start-audio').removeAttr('id');
+			          	$(".start-audio").attr('id', 'button-play-ws');
+			          	recognizer.stop();
+			          	//alert("end-on-btn-click : "+ $('.start-audio').attr('id'));
+			    	});
+
+			    	recognizer.onspeechend = function() {
+					  	$('.start-audio').empty();
+			           	$('.start-audio').append('<i class="fas fa-microphone-alt"></i>');
+			           	//$('.start-audio').removeAttr('id');
+			          	$(".start-audio").attr('id', 'button-play-ws');
+			          	recognizer.stop();
+			          	//alert("on-speech-end : "+ $('.start-audio').attr('id'));
+					}
+      			}
+
+      			function speakText1(str1) {
+      				if ('speechSynthesis' in window) {
+						var synthesis = window.speechSynthesis;
+
+					  	// Get the first `en` language voice in the list
+					  	var voice = synthesis.getVoices().filter(function(voice) {
+					    	return voice.lang === 'en';
+					  	})[0];
+
+					  	// Create an utterance object
+					  	var utterance = new SpeechSynthesisUtterance(str1);
+
+					  	// Set utterance properties
+					  	utterance.voice = voice;
+					  	utterance.pitch = 1.5;
+					  	utterance.rate = 1.25;
+					  	utterance.volume = 0.8;
+
+					  	// Speak the utterance
+					  	synthesis.speak(utterance);
+
+					} else {
+					  	alert('Text-to-speech not supported on this browser (or on your device).');
+					}
+      			}
+
+      			function speakText2(str1) {
+      				if ('speechSynthesis' in window) {
+					  	var synthesis = window.speechSynthesis;
+
+					  	// Get the first `en` language voice in the list
+					  	var voice = synthesis.getVoices().filter(function(voice) {
+					    	return voice.name == 'Microsoft Zira Desktop - English (United States)';
+					  	})[0];
+
+					  	// Create an utterance object
+					  	var utterance = new SpeechSynthesisUtterance(str1);
+
+					  	// Set utterance properties
+					  	utterance.voice = voice;
+					  	utterance.pitch = 250.0;
+					  	utterance.rate = 0.8;
+					  	utterance.volume = 0.7;
+
+					  	// Speak the utterance
+					  	synthesis.speak(utterance);
+					} else {
+					  alert('Text-to-speech not supported on this browser (or on your device).');
+					}
+      			}
+
+				var LoadTime = {{ time1 }} // get loading time from Flask
+				onload1();
+				setTimeout(pageLoad, LoadTime);
+				function onload1() {
+					$('.site').css('display','none');
+					$('body').css('overflow-y','hidden');
+					let a = Math.floor(Math.random() * quotes.length);
+					$('.quote').html('&ldquo;'+quotes[a]+'&rdquo; ~ '+writer[a]);
+				}
+				function pageLoad() {
+        			$('.loader').fadeOut(500);
+        			$('.site').fadeIn(500);
+        			$('body').css('overflow-y','visible');
+        			AOS.init();
+				}
+				$('.navbar-toggler').on('click', function () {
+					$('.nav-icon').toggleClass('open');
+					//alert($('.animated-icon1').toggleClass('open').)
+				});
+				$('.nav-item').on('click', function () {
+					$('.navbar-collapse').collapse('hide');
+					if($('.tab-content > .active').children(".main").length > 0) {
+						$('.navbar').css("backgroundColor",'#0B6196')
+					}
+					if($('.nav-icon').hasClass('open')) {
+						$('.nav-icon').toggleClass('open');
+					}
+				});
+				$('.Register').on('click', function() {
+					$('.RegisterForm').show(300);
+					$('body').css('overflow-y','hidden');
+					$('html,body').animate({scrollTop : 0}, '300');
+				});
+				$('.CloseForm').on('click', function() {
+					$('.RegisterForm').hide(300);
+					$('body').css('overflow-y','visible');
+				});
+				$('.btn-Reg').on('click', function() {
+					$('.Register').click();
+					$('.close-btn').click();
+				});
+				$('.btn-Con').on('click', function() {
+					$('.close-btn').click();
+					$('.con').click();
+					/* here */
+				});
+				$('.nav-link').on('click', function(event) {
+				    var target = $(this.getAttribute('href'));
+				    if( target.length ) {
+				        event.preventDefault();
+				        $('html, body').stop().animate({
+				            scrollTop: target.offset().top
+				        }, 1000);
+				    }
+				});
+				$('.code-button').on('click', function() {
+					var code = $(".pyCode").val();
+					$('.code').css('display','none');
+					$('.chat-loader').css('display','flex');
+					$.get("/submitCode", { r : code}).done(function(data) {
+						if(data=='1') {
+							$('.chat').css('display','block');
+							$('.chat-loader').attr('style','display : none !important');
+							$('.chat-footer').css('display','block');
+						}
+						else {
+							$('.code').css('display','block');
+							$('.chat-loader').attr('style','display : none !important');
+							alert("Invalid Code!!");
+						}
+					});
+				});
+				$(".chatbox").on('click', function(){
+					$(".chatbox").css("display","none");
+					$(".chat-container").show(300);
+					$('body').css('overflow-y','hidden');
+				});
+				$(".close-btn").click(function(){
+					$(".chat-container").hide(100);
+					$(".chatbox").show(500);
+					$('body').css('overflow-y','visible');
+				});
+				function getBotResponse() {
+					var rawText = $(".publisher-input").val();
+					if(rawText==="") {
+						return;
+					}
+					var userQuery = '<div class="media media-chat media-chat-reverse"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> <div class="media-body"> <p> '+ rawText +' </p> </div> </div>'
+					speakText1(rawText);
+					$(".publisher-input").val("");
+					$(".chat-container > .chat-window > .chat-content > .chat").append(userQuery);
+					$(".chat-container > .chat-window > .chat-footer > .publisher")[0].scrollIntoView({block: 'start', behavior: 'smooth'});
+					$.get("/get", { note: rawText }).done(function(data) {
+						var botQuery = '<div class="media media-chat"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="..."> <div class="media-body"> <p>' + data + '</p> </div> </div>';
+						$(".chat-container > .chat-window > .chat-content > .chat").append(botQuery);
+						$(".chat-container > .chat-window > .chat-footer > .publisher")[0].scrollIntoView({block: 'start', behavior: 'smooth'});
+						$('.chat-container > .chat-window > .chat-content').animate({scrollTop : $('.chat-container > .chat-window > .chat-content').get(0).scrollHeight}, '300');
+						speakText2(data);
+					});
+				}
+				$('.text-info').click(function() {
+					getBotResponse();
+				});
+				$('.publisher-input').keypress(function(e) {
+					if(e.which == 13) {
+						getBotResponse();
+					}
+				});
+			});
+		</script>
+		<!-- Project 1 Stylesheet -->
+		<link rel="stylesheet" href= "{{ url_for('static',filename='indexStyles.css') }}">
+		<!--<link rel="stylesheet" href="UI1styles.css"> -->
+	</head>
+	<body>
+		<div class="loader">
+			<h2 style="font-size : 34px; color : #FFF;margin : 0vh 0 20vh;">  </h2>
+			<div class="sk-cube-grid">
+				<div class="sk-cube sk-cube1"></div>
+				<div class="sk-cube sk-cube2"></div>
+				<div class="sk-cube sk-cube3"></div>
+				<div class="sk-cube sk-cube4"></div>
+				<div class="sk-cube sk-cube5"></div>
+				<div class="sk-cube sk-cube6"></div>
+				<div class="sk-cube sk-cube7"></div>
+				<div class="sk-cube sk-cube8"></div>
+				<div class="sk-cube sk-cube9"></div>
+			</div>
+			<h2 class="quote"> </h2>
+		</div>
+		<div class="site">
+		<div class="header" id="header1">
+			<div class="inner-header flex rgba-blue-light row" id="inner-header">
+				<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+					<strong class="navbar-brand">SmartSolver</strong>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+					<div class="nav-icon"><span></span><span></span><span></span></div>
+					</button>
+					<div class="collapse navbar-collapse nav-link-group" id="myNavbar">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link active" href="#header1"> Home </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#Features"> Features </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#FAQ"> FAQs </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link con" href="#ContactUs"> Contact Us </a>
+							</li>
+							<!-- Settings Option - For Changing Themes -->
+							<!--<li class="nav-item">
+								<a class="nav-link" data-toggle="modal" data-target="#settings">Settings</a>
+							</li>-->
+							<li class="nav-item right">
+								<a class="nav-link" href="/login" id="sign-up">Sign Up</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<div class="text-center white-text wow fadeInUp col-lg-7 offset-lg-0 col-10 offset-1" >
+					<h2> We provide the best platform to <strong style="color : #3498DB;"> Build, Manage and Publish </strong> chatbot for your organization. </h2>
+					<h3> Get Started and Register Your Organization </h3>
+					<button type="button" class="Register"> Register </button>
+				</div>
+				<h1 class="col-4 d-none d-sm-block"></h1>
+			</div>
+			<!--Waves Container-->
+			<div class="rgba-blue-light" id="waves-header">
+				<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 55" preserveAspectRatio="none" shape-rendering="auto">
+					<defs>
+					<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+					</defs>
+					<g class="parallax">
+						<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+						<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.5)" />
+						<use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.3)" />
+						<use xlink:href="#gentle-wave" x="48" y="23" fill="#f1f1f1" />
+					</g>
+				</svg>
+			</div>
+			<!--Waves end-->
+		</div>
+		<!-- Our Features -->
+		<div class="Features" id="Features">
+			<h2 class="text-center title9" data-aos="zoom-out"> Our Features </h2>
+			<hr class="hr1" data-aos="zoom-in-right" data-aos-offset="250" />
+			<div class="container-fluid" style="padding-top : 5vh;">
+				<div class="row">
+					<div class="col-md-3 col-sm-6" data-aos="zoom-in-up" data-aos-offset="300" data-aos-easing="ease-out-cubic">
+						<div class="serviceBox blue1">
+							<div class="service-count">1</div>
+							<div class="service-icon">
+								<i class="fa fa-globe"></i>
+							</div>
+							<div class="service-content">
+								<h3 class="title">24/7 Support</h3>
+								<p class="description">
+									Building user-centered chatbots that connects your organization and provide a real service and information accessible 24/7 to your users, all at once.
+								</p>
+								<a href="#" class="read-more">Read More</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6" data-aos="zoom-in-up" data-aos-offset="330" data-aos-easing="ease-out-cubic">
+						<div class="serviceBox blue1">
+							<div class="service-count">2</div>
+							<div class="service-icon">
+								<i class="fas fa-robot"></i>
+							</div>
+							<div class="service-content">
+								<h3 class="title">Chatbot Services</h3>
+								<p class="description">
+									Creating chatbots that deliver experiences that make sense to your audience and reflect your organization and help users to solve thier issues.
+								</p>
+								<a href="#" class="read-more">Read More</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6" data-aos="zoom-in-up" data-aos-offset="360" data-aos-easing="ease-out-cubic">
+						<div class="serviceBox blue1">
+							<div class="service-count">3</div>
+							<div class="service-icon">
+								<i class="fas fa-mobile-alt"></i>
+							</div>
+							<div class="service-content">
+								<h3 class="title">Personalized Look</h3>
+								<p class="description">
+									User can choose the color, theme, and avatar to match your look. The user can personalize the look of the app as per his/her convenience.
+								</p>
+								<a href="#" class="read-more">Read More</a>
+							</div>
+						</div>
+					</div>
+					<div id="four" class="col-md-3 col-sm-6" data-aos="zoom-in-up" data-aos-offset="390" data-aos-easing="ease-out-cubic">
+						<div class="serviceBox blue1">
+							<div class="service-count">4</div>
+							<div class="service-icon">
+								<i class="fas fa-user-tie"></i>
+							</div>
+							<div class="service-content">
+								<h3 class="title">Customer Care</h3>
+								<p class="description">
+									Augmenting customer care by replying to Frequently Asked Questions, guiding users to answers and seamlessly connecting to a human when necessary.
+								</p>
+								<a href="#" class="read-more">Read More</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,256L40,229.3C80,203,160,149,240,122.7C320,96,400,96,480,133.3C560,171,640,245,720,234.7C800,224,880,128,960,112C1040,96,1120,160,1200,181.3C1280,203,1360,181,1400,170.7L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
+		<!-- FAQ Accordion -->
+		<div class="FAQ-section" id="FAQ">
+			<h2 class="text-center title9" data-aos="zoom-out"> Questions You Might Have </h2>
+			<hr class="hr2" data-aos="zoom-in-right" data-aos-offset="150" />
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default" data-aos="fade-right" data-aos-offset="200" data-aos-easing="ease-in-sine">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									What is SmartSolver?
+								</a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+								<div class="panel-body">
+									<p> SmartSolver is a web application with a centralized system where organizations can register and then Build, Manage and Publish their Chatbots. </p>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default" data-aos="fade-left" data-aos-offset="210" data-aos-easing="ease-in-sine">
+							<div class="panel-heading" role="tab" id="headingTwo">
+								<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									How can one use the chatbot?
+								</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+								<div class="panel-body">
+									<p> One needs to enter the Organization's code and if the code is valid then the user can ask his/her queries and get their answers. </p>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default" data-aos="fade-right" data-aos-offset="220" data-aos-easing="ease-in-sine">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									Who all can register with SmartSolver?
+								</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+								<div class="panel-body">
+									<p> Any Educational Institute can register with SmartSolver. One Needs to Register their Organization by filling some details. The Login credentials will be sent through mail. </p>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default" data-aos="fade-left" data-aos-offset="230" data-aos-easing="ease-in-sine">
+							<div class="panel-heading" role="tab" id="headingFour">
+								<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+									How does one enable Speech Input ?
+								</a>
+								</h4>
+							</div>
+							<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+								<div class="panel-body">
+									<p> One needs to click on the chatbot option on bottom right corner. Enter the Organization Code, and press Submit. In the textbox, you'll get the get a chat input section from where you can send message to chatbot. On the right side, there will be a microphone icon. Click on it, you'll get a pop-up to allow the microphone. Click Allow. Then speak your query and after your query is done, the audio input will stop and chatbot will answer your query after processing it. </p>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default" data-aos="fade-right" data-aos-offset="240" data-aos-easing="ease-in-sine">
+							<div class="panel-heading" role="tab" id="headingFive">
+								<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+									What security does SmartSolver Offers ?
+								</a>
+								</h4>
+							</div>
+							<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+								<div class="panel-body">
+									<p> The important login credentials in the database are stored using SHA-256 cryptographic algorithm. SHA-256 is one of the successor hash functions to SHA-1 (collectively referred to as SHA-2), and is one of the strongest hash functions available. SHA-256 is not much more complex to code than SHA-1, and has not yet been compromised in any way. The 256-bit key makes it a good partner-function for AES. It is defined in the NIST (National Institute of Standards and Technology) standard ‘FIPS 180-4’. </p>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div><!--- END COL -->
+				</div>
+			</div>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,64L40,96C80,128,160,192,240,186.7C320,181,400,107,480,112C560,117,640,203,720,208C800,213,880,139,960,117.3C1040,96,1120,128,1200,133.3C1280,139,1360,117,1400,106.7L1440,96L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>
+		<!-- Contact Us -->
+		<div id="ContactUs">
+			<div class="container-form">
+				<div class="wrap">
+					<div class="more col-flex-c-m bgImg">
+						<div class="flex-w block1">
+							<div class="flex-2 disIcon1">
+								<i class="fas fa-map-marker-alt"></i>
+								<div style="display : inline-block;margin : 0 35px;">Address : </div>
+							</div>
+							<div class="flex-4 disTxt1">
+								Shri Bhagubhai Mafatlal Polytechnic, Irla, N. R. G Marg, Opposite Cooper Hospital, Vileparle (W), Mumbai - 400056
+							</div>
+						</div>
+						<div class="flex-w block2">
+							<div class="flex-2 disIcon2">
+								<i class="fas fa-phone-alt"></i>
+								<div style="display : inline-block;margin : 0 35px;">Phone : </div>
+							</div>
+							<div class="flex-4 disTxt2">
+								+91 9000000000
+							</div>
+						</div>
+						<div class="flex-w block3">
+							<div class="flex-2 disIcon3">
+								<i class="fas fa-envelope"></i>
+								<div style="display : inline-block;margin : 0 35px;">Email : </div>
+							</div>
+							<div class="flex-4 disTxt3">
+								smartsolver20@gmail.com
+							</div>
+						</div>
+					</div>
+					<form class="form-main" method="POST" action="http://localhost:5000/sendMail">
+						<div class="form-title d-flex flex title9">
+							Contact Us
+						</div>
+						<hr class="hr3" data-aos="zoom-in-right" />
+						<label class="label" for="first-name">Tell us your name <i style="color : red;">*</i></label>
+						<div class="wrap-input txt1-input validate-input" data-validate="Type first name">
+							<input class="input" id="first-name" type="text" name="first-name" placeholder="First name" autocomplete="off" required="required">
+							<span class="focus-input"></span>
+						</div>
+						<div class="wrap-input txt2-input validate-input" data-validate="Type last name">
+							<input class="input" type="text" name="last-name" placeholder="Last name" autocomplete="off" required="required">
+							<span class="focus-input"></span>
+						</div>
+						<label class="label" for="email">Enter your email <i style="color : red;">*</i></label>
+						<div class="wrap-input validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+							<input class="input" id="email" type="text" name="sender-email" placeholder="Eg. example@email.com" autocomplete="off" required="required">
+							<span class="focus-input"></span>
+						</div>
+						<label class="label" for="message">Message <i style="color : red;">*</i></label>
+						<div class="wrap-input validate-input" data-validate = "Message is required">
+							<textarea class="input" id="message" name="message" placeholder="Write us a message" required="required"></textarea>
+							<span class="focus-input"></span>
+						</div>
+						<div class="container-btn">
+							<button class="form-btn" type="submit">
+							Send Message
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Settings Modal -->
+		<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-notify modal-primary" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center">
+						<h4 class="modal-title white-text w-100 font-weight-bold py-2">Settings</h4>
+					</div>
+					<div class="modal-body">
+						<!-- Change Themes -->
+						<div class="custom-control custom-switch">
+							<input type="radio" name="theme" value="Blue" checked="checked"> Default (Blue)
+							<input type="radio" name="theme" value="Red"> Red
+							<input type="radio" name="theme" value="Green"> Green
+							<input type="radio" name="theme" value="Yellow"> Yellow
+							<input type="radio" name="theme" value="Purple"> Purple
+						</div>
+						<div class="select-font">
+							<h5> Change The Font Style For The App </h5>
+							<div class="custom-control custom-radio">
+								<input type="radio" class="custom-control-input" id="font1" name="RadioGroups" value="Cairo" checked>
+								<label class="custom-control-label" for="font1">Cairo</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" class="custom-control-input" id="font2" name="RadioGroups" value="Arvo">
+								<label class="custom-control-label" for="font2">Arvo</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" class="custom-control-input" id="font3" name="RadioGroups" value="Exo 2">
+								<label class="custom-control-label" for="font3">Exo 2</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer justify-content-center">
+						<a type="button" class="btn btn-outline-warning waves-effect close" id="SaveSettings" data-dismiss="modal" aria-label="Close"> Save </a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Chat Window -->
+		<div class="chat-container">
+			<div class="chat-window">
+				<div class="chat-header">
+					<h4 class="chat-header-title"> <strong> Quirry </strong> </h4> <a class="btn btn-sm btn-primary close-btn"> Close </a>
+				</div>
+				<div class="chat-content" id="chat-content" style="overflow-y : scroll !important;">
+					<div class="chat">
+						<div class="media media-chat"> <img class="avatar" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+							<div class="media-body">
+								<p> Hello There! I am <strong>Quirry</strong>. I'll try to help you out with your doubts. Feel free to ask your questions. </p>
+							</div>
+						</div>
+					</div>
+					<div class="code">
+						<h3 class="text-center"> Enter The Organization Code To Proceed </h3>
+						<div class="md-form input-group mb-3">
+							<input type="text" class="form-control pyCode" placeholder="Organization's Code">
+							<div class="input-group-append">
+								<button class="btn btn-md btn-primary m-0 px-3 code-button" type="button">Submit</button>
+							</div>
+						</div>
+						<div class="card text-center mb-3">
+							<h5 class="card-header bg-primary"> Note </h5>
+							<div class="card-body">
+								<p class="card-text"> <i class="fas fa-info-circle"></i> Make sure that your organization is registered with SmartSolver before entering the code. If already registered and code not working then contact us at smartsolver20@gmail.com </p>
+								<a href="#" class="btn btn-primary btn-Reg"> Register </a>
+								<a href="#" class="btn btn-primary btn-Con"> Contact Us </a>
+							</div>
+						</div>
+					</div>
+					<div class="chat-loader flex-center flex-column">
+						<div class="sk-circle">
+						  <div class="sk-circle1 sk-child"></div>
+						  <div class="sk-circle2 sk-child"></div>
+						  <div class="sk-circle3 sk-child"></div>
+						  <div class="sk-circle4 sk-child"></div>
+						  <div class="sk-circle5 sk-child"></div>
+						  <div class="sk-circle6 sk-child"></div>
+						  <div class="sk-circle7 sk-child"></div>
+						  <div class="sk-circle8 sk-child"></div>
+						  <div class="sk-circle9 sk-child"></div>
+						  <div class="sk-circle10 sk-child"></div>
+						  <div class="sk-circle11 sk-child"></div>
+						  <div class="sk-circle12 sk-child"></div>
+						</div>
+						<h5 class="text-center blue-text pb-5"> Please Wait Till The Chatbot Loads </h5>
+					</div>
+					<div class="voice-section">
+						<button class="voice-button" id=""> <i class="fas fa-microphone-alt"></i> </button>
+						<button class="voice-button" id="button-stop-ws"> <i class="fas fa-microphone-alt-slash"></i> </button>
+						<button class="voice-button" id="close-voice"> <i class="fas fa-times"></i> </button>
+					</div>
+				</div>
+				<div class="chat-footer">
+					<div class="publisher bt-1 border-light">
+						<img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+						<input class="publisher-input" type="text" name="note" placeholder="Ask something here">
+						<a class="publisher-btn" href="#" data-abc="true" data-toggle="tooltip" title="Emoji Keyboard Not Supported!">
+							<i class="fa fa-smile"></i>
+						</a>
+						<button class="publisher-btn start-audio" id="button-play-ws" data-abc="true" data-toggle="tooltip" title="Audio Input On!">
+							<i class="fas fa-microphone-alt"></i>
+						</button>
+						<a class="publisher-btn text-info" data-abc="true" data-toggle="tooltip" title="Send Message!">
+							<i class="fa fa-paper-plane"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Chatbot Icon -->
+		<div class="chatbox text-center">
+			<svg version="1.1" viewBox="0 0 258.27 242.62" xmlns="http://www.w3.org/2000/svg" id="chat-icon">
+				<g transform="translate(391.96 152.76)"	>
+					<rect x="-347.8" y="-69.059" width="161.57" height="154.57" ry="46.422" fill-opacity="1" fill="#FFF" stroke="#000" stroke-width="8.6985"/>
+					<g>
+						<rect x="-311.06" y="-34.863" width="18.304" height="43.845" ry="12.095" stroke-width="0"/>
+						<rect x="-239.56" y="-33.351" width="18.304" height="43.845" ry="12.095" stroke-width="0"/>
+						<rect transform="rotate(90)" x="34.786" y="249.8" width="6.1902" height="36.715" rx="3.0951" ry="3.3363" stroke="#000" stroke-width="4.6291"/>
+					</g>
+					<path d="m-185.29-31.916h20.957c9.8343 0 17.751 12.756 17.751 28.602v20.815c0 15.845-7.9171 28.602-17.751 28.602h-20.957z" fill-opacity="1" fill="#FFF" stroke="#000" stroke-width="8.16"/>
+					<path d="m-349.17 46.101h-20.957c-9.8343 0-17.751-12.756-17.751-28.602v-20.815c0-15.845 7.9171-28.602 17.751-28.602h20.957z" fill-opacity="1" fill="#FFF" stroke="#000" stroke-width="8.16"/>
+					<rect x="-369.16" y="-101.31" width="7.4601" height="68.965" rx="0" ry="0" stroke-opacity="0"/>
+					<ellipse cx="-365.78" cy="-102.25" rx="9.8436" ry="9.8436" stroke-opacity="0"/>
+					<g fill="#fff" stroke="#000">
+						<path d="m-251.3-148.8h72.387c22.861 0 41.265 13.959 41.265 31.299v12.304c0 17.34-18.404 31.299-41.265 31.299h-72.387c-22.861 0-41.265 104.79-41.265-31.299v-12.304c0-17.34 18.404-31.299 41.265-31.299z" stroke-width="7.9233"/>
+						<rect x="-253.3" y="-126.39" width="77.975" height=".86807" ry=".43403" stroke-width="6.888"/>
+						<rect x="-253.3" y="-106.73" width="77.975" height=".86807" ry=".43403" stroke-width="6.888"/>
+					</g>
+				</g>
+			</svg>
+		</div>
+		<!-- Register Form -->
+		<div class="RegisterForm bg-gra-01 p-t-180 p-b-100">
+			<a href="#" class="CloseForm"> </a>
+			<div class="wrapper">
+				<div class="card card-3">
+					<div class="card-heading"></div>
+					<div class="card-body">
+						<h2 class="title1">Registration Info</h2>
+						<form method="POST" action="http://localhost:5000/RegisterOrg">
+							<div class="input-group">
+								<input class="input--style-3" type="text" placeholder="Organization Name" name="Oname" autocomplete="off" required="required">
+							</div>
+							<div class="input-group">
+								<input class="input--style-3" type="text" placeholder="Organization Name Acronym" name="Oid" autocomplete="off" required="required">
+							</div>
+							<div class="input-group">
+								<div class="rs-select2">
+									<select name="Otype" required="required">
+										<option disabled="disabled" selected="selected">Type Of Organization </option>
+										<option> Junior Colleges </option>
+										<option> Engineering Diploma Colleges </option>
+										<option> Engineering Colleges </option>
+										<option> Commerce Colleges </option>
+										<option> Arts Colleges </option>
+									</select>
+									<div class="select-dropdown"></div>
+								</div>
+							</div>
+							<div class="input-group">
+								<input class="input--style-3" type="text" placeholder="Admin Name" name="Admin" autocomplete="off" required="required">
+							</div>
+							<div class="input-group">
+								<input class="input--style-3" type="text" placeholder="Address" name="Address" autocomplete="off" required="required">
+							</div>
+							<div class="input-group">
+								<input class="input--style-3" type="email" placeholder="Email" name="Email" autocomplete="off" required="required">
+							</div>
+							<div class="input-group">
+								<input class="input--style-3" type="text" placeholder="Phone" name="Phone" autocomplete="off" required="required">
+							</div>
+							<div class="p-t-10 btn-container">
+								<button class="btn btn--green" type="submit">Submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- footer -->
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#083E60" fill-opacity="1" d="M0,288L60,245.3C120,203,240,117,360,122.7C480,128,600,224,720,256C840,288,960,256,1080,245.3C1200,235,1320,245,1380,250.7L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z" style="border-bottom : 6px solid #083E60;"></path></svg>
+	<footer class="page-footer font-small pt-4">
+		<div class="container row">
+			<div class="col-md-7 offset-md-2 py-1">
+				<h4 class="text-center"> Team SmartSolver says .... </h4>
+				<p class="text-justify ml-2">SmartSolver is a simple application to make user experience effective. SmartSolver focuses on providing the most efficient chatbot which answers your queries reducing your work and saving your precious time. Curretly, we are associated with a single institute but are focusing on covering more institutes to make a centraized system. </p>
+			</div>
+			<div class="col-md-2 offset-md-1 pl-6 py-1">
+				<h4 class="text-center"> Quick Links </h4>
+				<ul class="list-unstyled list-inline text-center">
+					<li class="list-item">
+						About Us
+					</li>
+					<li class="list-item">
+						FAQ's
+					</li>
+					<li class="list-item">
+						Contact Us
+					</li>
+					<li class="list-item">
+						Sign In [For Admin]
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-copyright text-center py-3"> Copyright &copy; 2020 All Rights Reserved :
+			<a href="#header1"> SmartSolver </a>
+		</div>
+	</footer>
+	</div>
+	</body>
+</html>

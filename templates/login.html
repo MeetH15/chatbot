@@ -1,0 +1,122 @@
+<!-- Demo Form -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title> SmartSolver | Admin LogIn </title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Project 1 Stylesheet -->
+		<link rel="stylesheet" href="styles.css">
+		<!-- Bootstrap Core Minified CSS CDN -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+		<!-- jQuery CDN -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- Bootstrap Core Minified JS CDN -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+		<style>
+		body {
+			margin : 0;
+			box-sizing : border-box;
+			//background-color : #81d4fa;
+			background: rgb(4,33,144);
+			background: linear-gradient(45deg, rgba(4,33,144,1) 0%, rgba(26,126,245,1) 36%, rgba(15,201,250,1) 67%);
+			background-repeat : no-repeat;
+			min-height : 90vh;
+		}
+		.login-form {
+			background-color : #FFF;
+			height : 450px;
+			margin-top : 10vh;
+			//border : 1px solid #111;
+			//border-radius : 30px;
+			//box-shadow: -20px 10px 100px 15px #000;
+			//box-shadow : 0 8px 16px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+			box-shadow : 0px 0px 28px 6px rgba(0,0,0,0.8);
+		}
+		.title-part {
+			height : 35%;
+			//width : 100%;
+			background-image : url('https://www.itl.cat/pngfile/big/200-2003088_diamond-pattern-wallpaper-new-blue-hd-wallpapers-pinterest.jpg');
+			background-size : cover;
+			background-position : 100% center;
+			background-repeat : no-repeat;
+			background-clip: content-box;
+			//border-radius : 30px 30px 0 0;
+			margin : 0 -15px;
+		}
+		.title-part > h1 {
+			transform : translate(0,125%);
+			text-align : center;
+			color : #FFF;
+			font-size : 35px;
+		}
+		.login-btn {
+			padding : 8px 30px;
+			font-size : 20px;
+			background-color : #81d4fa;
+		}
+
+		form .error {
+  			color: #ff0000;
+  			display : block;
+		}
+		.form-control {
+			width : 100%;
+			display : block;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="login-form col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+			<div class="title-part">
+				<h1> Admin LogIn </h1>
+			</div>
+			<div class="form-part my-4">
+				<form class="text-center" name="form1" id="form1" method="POST" action="http://localhost:5000/ToAdmin">
+					<div class="input-group flex-nowrap mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="user-icon"><i class="fas fa-user-alt"></i></span>
+						</div>
+						<input type="text" class="form-control" placeholder="Admin Name" name="AdminName" id="username" aria-label="Username" aria-describedby="user-icon" required="required">
+					</div>
+					<div class="input-group flex-nowrap mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="email-icon"><i class="fas fa-envelope"></i></span>
+						</div>
+						<input type="text" class="form-control" placeholder="Organization Code" name="code" id="email" aria-label="Email" aria-describedby="email-icon" required="required">
+					</div>
+					<div class="input-group flex-nowrap mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="password-icon"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-label="Password" aria-describedby="password-icon" required="required">
+						<div class="input-group-append">
+							<span class="input-group-text"><i class="fas fa-eye" id="show-password"></i></span>
+						</div>
+					</div>
+					<input type="submit" class="btn login-btn my-2" id="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function() {
+				/* Show/Hide Password */
+				$('#show-password').on('click', function() {
+					if ($('#password').is('input[type="password"]')) {
+						$('#show-password').toggleClass("fas fa-eye-slash fas fa-eye");
+						$('#password').prop('type','text');
+					} else {
+						$('#show-password').toggleClass("far fa-eye-slash fas fa-eye");
+						$('#password').prop('type','password');
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

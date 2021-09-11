@@ -1,0 +1,579 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "How are you",
+                "Is anyone there?",
+                "Hello",
+                "Good day",
+                "How's your day going ?",
+                "What's going on ?",
+                "Sup?",
+                "Whazzup?",
+                "Hiya!",
+                "Howdy!",
+                "Yo!",
+                "What's up?"
+            ],
+            "responses": [
+                "Hello, thanks for visiting.",
+                "Good to see you",
+                "Hi there, how can I help?",
+                "Nice to see you.",
+                "Pleased to meet you"
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "See you later",
+                "Goodbye",
+                "Talk to you later"
+            ],
+            "responses": [
+                "See you later, thanks for visiting",
+                "Have a nice day",
+                "Bye! Come back again soon."
+            ]
+        },
+        {
+            "tag": "thanks",
+            "patterns": [
+                "Thanks",
+                "Thank you",
+                "That's helpful"
+            ],
+            "responses": [
+                "Happy to help!",
+                "Any time!",
+                "My pleasure",
+                "Glad to help!",
+                "It was the least I could do",
+                "No problem",
+                "You're welcome"
+            ]
+        },
+        {
+            "tag": "hours",
+            "patterns": [
+                "What hours are you open?",
+                "What are your hours?",
+                "When are you open?",
+                "Are you open today?",
+                "When do you open today?",
+                "What are your hours today?"
+            ],
+            "responses": [
+                "We're open every day 7am-7pm except Sunday.",
+                "Our hours are 9am-9pm every day except Sunday."
+            ]
+        },
+        {
+            "tag": "website",
+            "patterns": [
+                "Is there any website of Bhagubhai Polytechnic",
+                "Any website available for S B M Polytechnic ?",
+                "What is the website for S B M P?"
+            ],
+            "responses": [
+                "You can visit our website for more info: www.sbmp.ac.in"
+            ]
+        },
+        {
+            "tag": "Principal",
+            "patterns": [
+                "Who is the Principal Of S B M Polytechnic?",
+                "Who is the Principal Of S B M P?"
+            ],
+            "responses": [
+                "Dr. Mohd. Zafar Shaikh is the Principal of Shri Bhagubhai Mafatlal Polytechnic."
+            ]
+        },
+        {
+            "tag": "VicePrincipal",
+            "patterns": [
+                "Who is the Vice-Principal Of S B M Polytechnic?",
+                "Who is the Vice-Principal Of S B M P?"
+            ],
+            "responses": [
+                "Mrs. N.G.Kadukar is the Vice-Principal of Shri Bhagubhai Mafatlal Polytechnic."
+            ]
+        },
+        {
+            "tag": "headofCSE",
+            "patterns": [
+                "Who is the Head of Computer Department?",
+                "Who is the HOD of Computer Department?",
+                "Who is the HOD of CSE Department?",
+                "Who is the HOD of Computer Department?"
+            ],
+            "responses": [
+                "The Head Of Department Of Computer Department is Shri J.S.Kulkarni.",
+                "The HOD Of Computer Department is Shri J.S.Kulkarni."
+            ]
+        },
+        {
+            "tag": "VisionOfCSE",
+            "patterns": [
+                "What is the Vision Of Computer Engineering Department?",
+                "What is the Vision Of CSE Department?"
+            ],
+            "responses": [
+                "To create a sustainable academic environment to produce highly competent computer professionals."
+            ]
+        },
+        {
+            "tag": "MissionofCSE",
+            "patterns": [
+                "What is the Mission Of Computer Engineering Department?",
+                "What is the Mission Of CSE Department?"
+            ],
+            "responses": [
+                "1. To expose students to latest tools and technologies in computing. <br />2. To keep faculties in tune with current professional demands by adequate training and higher studies. <br />3. To Adapt to rapid advancements in the computing by engaging students in the lifelong learning. <br />4. To incorporate sound ethical moral and social values amongst students for benefit of the society."
+            ]
+        },
+        {
+            "tag": "headofIT",
+            "patterns": [
+                "Who is the Head of Information Technology Department?",
+                "Who is the HOD of Information Department?"
+            ],
+            "responses": [
+                "The H O D Of Information Technology Department is Shri A.B.Dongaonkar.",
+                "The Head Of Department Of Information Technology Department is Shri A.B.Dongaonkar."
+            ]
+        },
+        {
+            "tag": "VisionOfIT",
+            "patterns": [
+                "What is the Vision Of Information Technology Department?",
+                "What is the Vision Of IT Department?"
+            ],
+            "responses": [
+                "To create a vibrant environment that nurtures logical thinking, dynamism and innovation to transform students into competent IT professionals."
+            ]
+        },
+        {
+            "tag": "MissionofIT",
+            "patterns": [
+                "What is the Mission Of Information Technology Department?",
+                "What is the Mission Of IT Department?"
+            ],
+            "responses": [
+                "1. To offer high quality, up-to-date knowledge through curriculum, infrastructure and teaching learning process in IT field. <br />2. To equip students with latest skills in the field of technologies supplemented with Practical Oriented approach to face ever evolving challenges in IT industry. <br />3. To facilitate faculty members to keep pace with rapid development through training and higher education, mutually benefitting students and staff. <br />4. To develop healthy interaction between faculty, students and industry professionals. <br />5.To instil ethical values combined with winning attitude contributing to the welfare of the society while being committed to Life-long Learning."
+            ]
+        },
+        {
+            "tag": "headofDE",
+            "patterns": [
+                "Who is the Head of Digital Electronics Department?",
+                "Who is the HOD of Digital Electronics?",
+                "Who is the Head of DE Department?",
+                "Who is the HOD of DE Department?"
+            ],
+            "responses": [
+                "For currently Head Of Digital Electronics is Mrs. A.A.Kulkarni."
+            ]
+        },
+        {
+            "tag": "visionofDE",
+            "patterns": [
+                "What is the Vision of Digital Electronics?",
+                "Vision of Digital Electronics?"
+            ],
+            "responses": [
+                "We aspire to develop technically skilled manpower in the field of Digital Electronics. "
+            ]
+        },
+        {
+            "tag": "MissionofDE",
+            "patterns": [
+                "What is the Mission of Digital Electronics?",
+                "Mission of Digital Electronics?"
+            ],
+            "responses": [
+                "1: To design need based curriculum. </br>2: To provide advanced laboratory set-up. <br/>3: To maintain industry-institute liaison. <br/>4: To train faculty and staff to accept challenges in rapidly changing socio-technical environment. <br/>5: To imbue students with soft skills, entrepreneurial qualities, ethics and lifelong learning."
+            ]
+        },
+        {
+            "tag": "headofChemical",
+            "patterns": [
+                "Who is the Head of Chemical Department?",
+                "Who is the HOD of Chemical Department?"
+            ],
+            "responses": [
+                "For currently, Head Of Chemical Department is Shri R.D.Shimpi."
+            ]
+        },
+        {
+            "tag": "VisionofChemical",
+            "patterns": [
+                "What is the Vision of Chemical Department?",
+                "Vision of Chemical Engineering?",
+                "What is the Vision of Chemical Engineering Department?",
+                "Vision of Chemical Department?"
+            ],
+            "responses": [
+                "Empower potential, through excellence in need based chemical engineering education."
+            ]
+        },
+        {
+            "tag": "MissionofChemical",
+            "patterns": [
+                "What is the Mission of Chemical Department?",
+                "Mission of Chemical Engineering?"
+            ],
+            "responses": [
+                "1.  To impart need based chemical engineering knowledge through relevant curriculum.<br/>2.  To prepare employable personnel and entrepreneurs through industry-institute interaction.<br/>3.  Enrich departmental infrastructure and facilities.<br/>4.  To inculcate sense of discipline, responsibility towards society and promote lifelong learning. "
+            ]
+        },
+        {
+            "tag": "headofPlastic",
+            "patterns": [
+                "Who is the Head of Plastic Department?",
+                "Who is the HOD of Plastic?"
+            ],
+            "responses": [
+                "For currently, Head of Plastics Department is Shri D.M.Karad."
+            ]
+        },
+        {
+            "tag": "headofIE",
+            "patterns": [
+                "Who is the Head of Industrial Electronics Department?",
+                "Who is the HOD of Industrial Electronics?",
+                "Who is the HOD of Industrial Electronics Department?",
+                "Who is the HOD of IE Department?"
+            ],
+            "responses": [
+                "for currently Head of  Industrial electronics is Mrs. A.A.Kulkarni"
+            ]
+        },
+        {
+            "tag": "VisionofIE",
+            "patterns": [
+                "What is the Vision of Industrial Electronics Department?",
+                "Vision of Industrial Electronics?"
+            ],
+            "responses": [
+                "We aspire to develop technically skilled manpower in the field of Industrial Electronics."
+            ]
+        },
+        {
+            "tag": "MissionofIE",
+            "patterns": [
+                "What is the Mission of Industrial Electronics Department?",
+                "Mission of Industrial Electronics?"
+            ],
+            "responses": [
+                "1: To design need based curriculum. <br/>2: To provide advanced laboratory set-up. <br/>3: To maintain industry-institute liaison. <br/>4: To train faculty and staff to accept challenges in rapidly changing socio-technical environment. <br/>5: To imbue students with soft skills, entrepreneurial qualities, ethics and lifelong learning. "
+            ]
+        },
+        {
+            "tag": "headofElectrical",
+            "patterns": [
+                "Who is the Head of Electrical Department?",
+                "Who is the HOD of Electrical Department?"
+            ],
+            "responses": [
+                "for currently head of electronicals is Mr.N.D.Adate"
+            ]
+        },
+        {
+            "tag": "VisionofElectrical",
+            "patterns": [
+                "What is the Vision of Electrical Department?",
+                "Vision of Electrical?"
+            ],
+            "responses": [
+                "We aspires to become lead Electrical Engineering Department in providing need based Technical Education."
+            ]
+        },
+        {
+            "tag": "MissionofElectrical",
+            "patterns": [
+                "What is the Mission of Electrical Department?",
+                "Mission of Electrical?"
+            ],
+            "responses": [
+                "1. To impart need based Technical Education in the field of Electrical Engineering<br/>2. To provide state-of art laboratories with facilities<br/>3. To empower the students by enhancing their Communication, soft skill and practice ethics<br/>4. To enhance Industry-Institute relationships for lifelong learning "
+            ]
+        },
+        {
+            "tag": "headofMechanical",
+            "patterns": [
+                "Who is the Head of Mechanical Department?",
+                "Who is the HOD of Mechanical?"
+            ],
+            "responses": [
+                "For currently, Head of Mechanical is Shri A K Chore."
+            ]
+        },
+        {
+            "tag": "VisionofMechanical",
+            "patterns": [
+                "What is the Vision of Mechanical Department?",
+                "What is the Vision of Mechanical Engineering Department?"
+            ],
+            "responses": [
+                "To be a leading and benchmark department through value-based technical education and constantly pursuing excellence."
+            ]
+        },
+        {
+            "tag": "MissionofMechanical",
+            "patterns": [
+                "What is the Mission of Mechanical Department?",
+                "Mission of Mechanical?"
+            ],
+            "responses": [
+                "1. To deliver competent and creative Mechanical Engineering graduates of International standards.<br/>2. To ensure that students are equipped with entrepreneurial skill, soft skills and ethical values required for engineering professional and society.<br/>3. To develop faculty through continuous improvement and training programmes."
+            ]
+        },
+        {
+            "tag": "HeadofCivil",
+            "patterns": [
+                "Who is the Head of Civil Department?",
+                "Who is the HOD of Civil Department?",
+                "Who is the HOD of Civil Engineering Department?",
+                "Who is the HOD of Civil Engineering Department?"
+            ],
+            "responses": [
+                "The Head of Civil Engineering Department is Shri V B Vanvari"
+            ]
+        },
+        {
+            "tag": "VisionofCivil",
+            "patterns": [
+                "What is the Vision of Civil Department?",
+                "What is the Vision of Civil Engineering Department?"
+            ],
+            "responses": [
+                "To impart need based education and training in Civil Engineering."
+            ]
+        },
+        {
+            "tag": "MissionofCivil",
+            "patterns": [
+                "What is the Mission  of Civil Department?",
+                "Mission of Civil ?"
+            ],
+            "responses": [
+                "1. To prepare the students for ever changing requirements through curriculum design and teaching- learning process with practical oriented approach under academic autonomy.<br/>2. To establish state of art infrastructure and facilities.<br/>3. To strength industry-institute interaction.<br/>4. To ensure students are equipped with entrepreneurial qualities, soft skills and promote lifelong learning."
+            ]
+        },
+        {
+            "tag": "FeesSBMP",
+            "patterns": [
+                "What are the fees of S B M Polytechnic?",
+                "Fees for Shri Bhagubhai Mafatlal Polytechnic ?",
+                "What is the fees of SBMP?",
+                "Fees of SBMP"
+            ],
+            "responses": [
+                "Please ask your question again by adding a specific department!"
+            ]
+        },
+        {
+            "tag": "FeesCSE",
+            "patterns": [
+                "What are the fees of Computer Engineering Department?",
+                "What are the fees for CSE Department ?"
+            ],
+            "responses": [
+                "Fees of CSE for Open is 58,400  \nFor TFWS 6,127.50 \nFor SC/ST 5,902.50 \nFor OBC 32,038.75 \nFor VJNT/SBC 5,902.50"
+            ]
+        },
+        {
+            "tag": "FeesIT",
+            "patterns": [
+                "What are the fees of IT Department?",
+                "What are the fees for Information Technology Department?"
+            ],
+            "responses": [
+                "Fees of IT for Open is 58,400 \nFor TFWS 6,127.50 \nFor SC/ST 5,902.50 \nFor OBC 32,038.75 \nFor VJNT/SBC 5,902.50"
+            ]
+        },
+        {
+            "tag": "FeesCivil",
+            "patterns": [
+                "What are the fees of Civil Department?",
+                "What are the fees for Civil Engineering Department?"
+            ],
+            "responses": [
+                "Fees of Civil for Open is 20,900 <br/>for TFWS 2,718 <br/>for SC/ST 2,493 <br>for OBC 11,584<br/>for VJNT/SBC 2,493"
+            ]
+        },
+        {
+            "tag": "FeesElectrical",
+            "patterns": [
+                "What are the fees of Electrical Department?",
+                "What are the fees for Civil Engineering Department?"
+            ],
+            "responses": [
+                "Fees of Electrical for Open is 20,900 <br/>for TFWS 2,718 <br/>for SC/ST 2,493 <br>for OBC 11,584<br/>for VJNT/SBC 2,493"
+            ]
+        },
+        {
+            "tag": "FeesIE",
+            "patterns": [
+                "What are the fees of IE Department?",
+                "What are the fees for Industrial Electronics Department?"
+            ],
+            "responses": [
+                "Fees of Industrial Electronics for Open is 20,900 <br/>for TFWS 2,718 <br/>for SC/ST 2,493 <br>for OBC 11,584<br/>for VJNT/SBC 2,493"
+            ]
+        },
+        {
+            "tag": "FeesMechanical",
+            "patterns": [
+                "What are the fees of Mechanical Department?",
+                "What are the fees for Mechanical Engineering Department?"
+            ],
+            "responses": [
+                "Fees of Mechanical for Open is 20,900 <br/>for TFWS 2,718 <br/>for SC/ST 2,493 <br>for OBC 11,584<br/>for VJNT/SBC 2,493"
+            ]
+        },
+        {
+            "tag": "FeesforChemical",
+            "patterns": [
+                "What are the fees of Chemical Department?",
+                "What are the fees for Chemical Engineering Department?"
+            ],
+            "responses": [
+                "Fees of Chemical for Open is 20,900 <br/>for TFWS 2,718 <br/>for SC/ST 2,493 <br>for OBC 11,584<br/>for VJNT/SBC 2,493"
+            ]
+        },
+        {
+            "tag": "VisionofSBMP",
+            "patterns": [
+                "What is the Vision of S.B.M.Polyetechnic?",
+                "What is the Vision of SBMP?"
+            ],
+            "responses": [
+                "SBM Polytechnic aspires to be the lead institute in providing need based technical education."
+            ]
+        },
+        {
+            "tag": "MissionofSBMP",
+            "patterns": [
+                "What is the Mission of S.B.M.Polyetechnic?",
+                "What is the Mission of SBMP?"
+            ],
+            "responses": [
+                "1. To provide state-of-the-art infrastructure and latest equipments for providing a stimulating learning environment.<br />2. To prepare students to meet the dynamic needs of the industry by periodic reviewing and upgradation of curriculum through an interactive process with industry.<br />3.To inculcate a spirit of excellence in terms of academic performance, research and innovation in faculty by providing appropriate support and incentive systems.<br />4. To promote and support Co-Curricular, extra-curricular activities and industry interaction to make students socially sensitive and employable."
+            ]
+        },
+        {
+            "tag": "Cutoff",
+            "patterns": [
+                "What is the Cut-Off of SBMP?",
+                "What is the Cut-Off for S B M Polytechnic?"
+            ],
+            "responses": [
+                "Cut-Off will be updated soon."
+            ]
+        },
+        {
+            "tag": "intake",
+            "patterns": [
+                "What is the intake of courses in SBMP?",
+                "What is the intake in SBMP?"
+            ],
+            "responses": [
+                "1. Civil Engg. - 30<br/>2. Mechanical Engg - 60<br/>3. Electrical Engg - 40<br/>4. Plastic Engg - 30<br/>5. Chemical Engg - 30<nr/>6. Electronic and Telecommunication - 50<br/>7.Computer Engg - 60<br/>7.Information Technology - 60<br/>7.Computer Engg (Data Science) - 60"
+            ]
+        },
+        {
+            "tag": "ForFaculty",
+            "patterns": [
+                "How are the faculty of  S B M Polytechnic?",
+                "Faculty of SBMP?",
+                "How are the teachers of SBMP?",
+                "How are the teachers of S B M Polytechnic?"
+            ],
+            "responses": [
+                "The Faculty of SBMP is good. Most of them have Masters Degree and their communication skill is also good.",
+                "Faculty of SBMP are very cooperative and always helpful to students."
+            ]
+        },
+        {
+            "tag": "DTECode",
+            "patterns": [
+                "What is the DTE Code for SBM Polytechnic?",
+                "What is the DTE Code for SBMP?"
+            ],
+            "responses": [
+                "The DTE Code of SBMP is 3025."
+            ]
+        },
+        {
+            "tag": "Documents",
+            "patterns": [
+                "What are the Documents required for taking Admission in SBMP?",
+                "What are the Documents required?",
+                "What are the Documents required for students?"
+            ],
+            "responses": [
+                "Documents required for taking admission in SBMP are <li>Original S.S.C/H.S.C Marksheet</li>1,<li>Original VIII, IX Marksheets or Proforma 'Z'</li><li>Aadhar Card (True Copy)</li><li>Original Domicile Certificate</li><li>Original Caste Certificate</li><li> Original Exam Hall Ticket (For CBSE Students)</li><li>Original Gap Certificate (If Required)</li><li>Two Passport Size Photos</li>"
+            ]
+        },
+        {
+            "tag": "admission",
+            "patterns": [
+                "How to apply for admission in SBMP?",
+                "How to apply for admission in S B M Polytechnic?",
+                "How to apply for admission after 10th?",
+                "How to start eith admission after 12th?",
+                "How to apply for admission after SSC?",
+                "How to apply for admission after HSC?"
+            ],
+            "responses": [
+                "SBM Polytechnic is a Gujrathi speaking Linguistic Minority institution. As per the rules 50% of the intake are reserved for the candidate belonging to Gujrathi speaking Linguistic community. Remaining 50% are available for the non Gujarathi ie General category candidates.<br /> The admission details will be published on official website after SSC/HSC Result declaration.<br />The aspirant are advised to refer admission prospectus and the MSDTE website for details."
+            ]
+        },
+        {
+            "tag": "autonomous",
+            "patterns": [
+                "Is SBMP an autonomous college?",
+                "Is SBMP an autonomous institute?"
+            ],
+            "responses": [
+                "Yes, Shri Bhagubhai Maafatlal Polytechnic is an autonomous institute which designs its own curriculum as per the current trends in the industry."
+            ]
+        },
+        {
+            "tag": "newCourse",
+            "patterns": [
+                "Any new course to be introduced in S B M Polytechnic?",
+                "What is the new course Computer Engineering (Data Science)?"
+            ],
+            "responses": [
+                "From 2020, SBMP is offering a new programme in Cutting Edge Technology : Diploma in Computer Engineering (Data Science) with an intake of 60."
+            ]
+        },
+        {
+            "tag": "placement",
+            "patterns": [
+                "List of Placement Industries after graduating from SBMP?",
+                "What is the Placement Process after Diploma",
+                "Does SBMP offers placements after completing Diploma?"
+            ],
+            "responses": [
+                " Most of the students prefer to go for Higher Education after Diploma. All the students who opt for jobs after completion of Diploma are provided special soft skill training and placed for jobs through campus recruitment process. Some of the Placement Industries are : <br/>L & T Ltd, .B.A.R.C., Mahindra and Mahindra Ltd., Tata Motors Ltd., HOCL, TCS Ltd., TCE Ltd., ABB, Air India, Jet Air, Siemens, MSEB, Reliance Energy, Pidilite, etc"
+            ]
+        },
+        {
+            "tag": "OnlineClasses",
+            "patterns": [
+                "Where will the Online Classes Be Conducted ?",
+                "On which medium will Online Classes Start ?"
+            ],
+            "responses": [
+                "Online Classes will be conducted from 12th August on Microsoft Teams"
+            ]
+        }
+    ]
+}
